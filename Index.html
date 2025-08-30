@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Tap-Tap! Mini-App</title>
+
+  <!-- Mini-App embed meta: REPLACE with your GH Pages base URL (no trailing slash) -->
+  <meta name="fc:miniapp" content='{
+    "version":"1",
+    "imageUrl":"https://YOUR_GH_PAGES_URL/cover.jpg",
+    "button":{
+      "title":"Play",
+      "action": {
+        "type":"launch_frame",
+        "name":"Tap-Tap!",
+        "url":"https://YOUR_GH_PAGES_URL/",
+        "splashImageUrl":"https://YOUR_GH_PAGES_URL/icon.png",
+        "splashBackgroundColor":"#111827"
+      }
+    }
+  }' />
+
+  <style>
+    :root{--bg:#071124;--card:#0f1724;--muted:#9aa7b8;--accent:#22c55e}
+    html,body{height:100%;margin:0;font-family:system-ui;background:var(--bg);color:#fff}
+    .wrap{max-width:420px;margin:18px auto;padding:16px}
+    .card{background:var(--card);padding:12px;border-radius:14px;margin-bottom:12px}
+    .tap{width:220px;height:220px;border-radius:999px;border:none;font-size:28px;font-weight:800;background:var(--accent);color:#052}
+    .row{display:flex;gap:8px}
+    .btn{padding:10px 12px;border-radius:10px;border:none;background:#2563eb;color:#fff;font-weight:700}
+    footer{color:var(--muted);font-size:13px;text-align:center;margin-top:12px}
+  </style>
+
+  <!-- Mini-App SDK (graceful if not present) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Tap-Tap! 🎯</h1>
+      <div style="color:var(--muted)">Tap as fast as you can for 10 seconds — share your score on Farcaster.</div>
+    </div>
+
+    <div class="card" id="game">
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+        <div>Score: <b id="score">0</b></div>
+        <div>Time: <b id="time">10</b>s</div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+        <button id="tap" class="tap" disabled>START</button>
+      </div>
+
+      <div class="row">
+        <button id="start" class="btn" style="flex:1">Start Game</button>
+        <button id="share" class="btn" style="flex:1;display:none;background:#16a34a">Share</button>
+      </div>
+    </div>
+
+    <footer>Built for Farcaster · Tap, share, challenge</footer>
+  </div>
+
+  <script>
+    // notify host app we're ready (safe-guard)
+    window.addEventListener('DOMContentLoaded', () => {
+      try { window.miniapp?.sdk?.actions?.ready?.(); } catch(e) {}
+    });
+
+    const $tap = document.getElementById('tap');
+    const $start = document.getElementById('start');
+    const $share = document.getElementById('share');
+    const $score = document.getElementById('score');
+    const $time = document.getElementById('time');
+
+    let score=0, timeLeft=10, timer=null, playing=false;
+
+    function endGame(){
+      playing=false; clearInterval(timer);
+      $tap.disabled=true; $tap.textContent='DONE';
+      $share.style.display='inline-block';
+      try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e) {}
+    }
+
+    $start.addEventListener('click', ()=> {
+      if (playing) return;
+      score=0; timeLeft=10; $score.textContent=score; $time.textContent=timeLeft;
+      $tap.disabled=false; $tap.textContent='TAP!';
+      $share.style.display='none';
+      playing=true;
+      try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e){}
+      timer=setInterval(()=>{ timeLeft--; $time.textContent=timeLeft; if(timeLeft<=0) endGame(); }, 1000);
+    });
+
+    $tap.addEventListener('click', ()=> { if(!playing) return; score++; $score.textContent=score; });
+
+    $share.addEventListener('click', async ()=> {
+      const text = `I scored ${score} in Tap-Tap! 🎯 Can you beat me?`;
+      try {
+        if (window.miniapp?.sdk?.actions?.composeCast) {
+          await window.miniapp.sdk.actions.composeCast({ text });
+          return;
+        }
+      } catch(e){}
+      try { await navigator.clipboard.writeText(text); alert('Score copied — paste into a cast!'); } catch(e) { alert(text); }
+    });
+  </script>
+</body>
+</html><!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Tap-Tap! Mini-App</title>
+
+  <!-- Mini-App embed meta: REPLACE with your GH Pages base URL (no trailing slash) -->
+  <meta name="fc:miniapp" content='{
+    "version":"1",
+    "imageUrl":"https://YOUR_GH_PAGES_URL/cover.jpg",
+    "button":{
+      "title":"Play",
+      "action": {
+        "type":"launch_frame",
+        "name":"Tap-Tap!",
+        "url":"https://YOUR_GH_PAGES_URL/",
+        "splashImageUrl":"https://YOUR_GH_PAGES_URL/icon.png",
+        "splashBackgroundColor":"#111827"
+      }
+    }
+  }' />
+
+  <style>
+    :root{--bg:#071124;--card:#0f1724;--muted:#9aa7b8;--accent:#22c55e}
+    html,body{height:100%;margin:0;font-family:system-ui;background:var(--bg);color:#fff}
+    .wrap{max-width:420px;margin:18px auto;padding:16px}
+    .card{background:var(--card);padding:12px;border-radius:14px;margin-bottom:12px}
+    .tap{width:220px;height:220px;border-radius:999px;border:none;font-size:28px;font-weight:800;background:var(--accent);color:#052}
+    .row{display:flex;gap:8px}
+    .btn{padding:10px 12px;border-radius:10px;border:none;background:#2563eb;color:#fff;font-weight:700}
+    footer{color:var(--muted);font-size:13px;text-align:center;margin-top:12px}
+  </style>
+
+  <!-- Mini-App SDK (graceful if not present) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Tap-Tap! 🎯</h1>
+      <div style="color:var(--muted)">Tap as fast as you can for 10 seconds — share your score on Farcaster.</div>
+    </div>
+
+    <div class="card" id="game">
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+        <div>Score: <b id="score">0</b></div>
+        <div>Time: <b id="time">10</b>s</div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+        <button id="tap" class="tap" disabled>START</button>
+      </div>
+
+      <div class="row">
+        <button id="start" class="btn" style="flex:1">Start Game</button>
+        <button id="share" class="btn" style="flex:1;display:none;background:#16a34a">Share</button>
+      </div>
+    </div>
+
+    <footer>Built for Farcaster · Tap, share, challenge</footer>
+  </div>
+
+  <script>
+    // notify host app we're ready (safe-guard)
+    window.addEventListener('DOMContentLoaded', () => {
+      try { window.miniapp?.sdk?.actions?.ready?.(); } catch(e) {}
+    });
+
+    const $tap = document.getElementById('tap');
+    const $start = document.getElementById('start');
+    const $share = document.getElementById('share');
+    const $score = document.getElementById('score');
+    const $time = document.getElementById('time');
+
+    let score=0, timeLeft=10, timer=null, playing=false;
+
+    function endGame(){
+      playing=false; clearInterval(timer);
+      $tap.disabled=true; $tap.textContent='DONE';
+      $share.style.display='inline-block';
+      try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e) {}
+    }
+
+    $start.addEventListener('click', ()=> {
+      if (playing) return;
+      score=0; timeLeft=10; $score.textContent=score; $time.textContent=timeLeft;
+      $tap.disabled=false; $tap.textContent='TAP!';
+      $share.style.display='none';
+      playing=true;
+      try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e){}
+      timer=setInterval(()=>{ timeLeft--; $time.textContent=timeLeft; if(timeLeft<=0) endGame(); }, 1000);
+    });
+
+    $tap.addEventListener('click', ()=> { if(!playing) return; score++; $score.textContent=score; });
+
+    $share.addEventListener('click', async ()=> {
+      const text = `I scored ${score} in Tap-Tap! 🎯 Can you beat me?`;
+      try {
+        if (window.miniapp?.sdk?.actions?.composeCast) {
+          await window.miniapp.sdk.actions.composeCast({ text });
+          return;
+        }
+      } catch(e){}
+      try { await navigator.clipboard.writeText(text); alert('Score copied — paste into a cast!'); } catch(e) { alert(text); }
+    });
+  </script>
+</body>
+</html>￼Enter
