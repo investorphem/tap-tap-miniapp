@@ -22,5 +22,11 @@
   "castShareUrl": "https://tap-tap-miniapp.vercel.app/",
 
   "homeUrl": "https://tap-tap-miniapp.vercel.app/",
-  "webhookUrl": ""
+  "webhookUrl": "",
+
+  "accountAssociation": {
+    "type": "farcaster",
+    "fid": 219059,
+    "username": "investorphem"
+  }
 }
