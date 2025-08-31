@@ -10,22 +10,22 @@
     "subtitle": "Quick 10-second tap challenge 🎯 Beat your friends!",
     "description": "Tap as fast as you can for 10 seconds. Share your score and challenge friends on Farcaster.",
     "primaryCategory": "games",
-    "homeUrl": "https://YOUR_GH_PAGES_URL/",
-    "iconUrl": "https://YOUR_GH_PAGES_URL/icon.png",
-    "heroImageUrl": "https://YOUR_GH_PAGES_URL/cover.jpg",
-    "splashImageUrl": "https://YOUR_GH_PAGES_URL/icon.png",
+    "homeUrl": "https://investorphem.github.io/tap-tap-miniapp//",
+    "iconUrl": "https://investorphem.github.io/tap-tap-miniapp//icon.png",
+    "heroImageUrl": "https://investorphem.github.io/tap-tap-miniapp//cover.jpg",
+    "splashImageUrl": "https://investorphem.github.io/tap-tap-miniapp//icon.png",
     "splashBackgroundColor": "#111827",
     "screenshotUrls": [
-      "https://YOUR_GH_PAGES_URL/screenshot1.png"
+      "https://investorphem.github.io/tap-tap-miniapp//screenshot1.png"
     ],
-    "imageUrl": "https://YOUR_GH_PAGES_URL/preview.png",
+    "imageUrl": "https://investorphem.github.io/tap-tap-miniapp//preview.png",
     "tags": ["game","arcade","challenge","tap"],
     "tagline": "The fastest fingers win ⏱️🔥",
     "buttonTitle": "Play Now",
     "ogTitle": "Tap-Tap! 🎯",
     "ogDescription": "I scored [SCORE] in Tap-Tap — can you beat me?",
-    "ogImageUrl": "https://YOUR_GH_PAGES_URL/preview.png",
-    "castShareUrl": "https://YOUR_GH_PAGES_URL/",
+    "ogImageUrl": "https://investorphem.github.io/tap-tap-miniapp//preview.png",
+    "castShareUrl": "https://investorphem.github.io/tap-tap-miniapp//",
     "webhookUrl": ""
   }
 }
