@@ -1,31 +1,26 @@
 {
-  "accountAssociation": {
-    "header": "<PASTE_HEADER_FROM_MANIFEST_TOOL_HERE>",
-    "payload": "<PASTE_PAYLOAD_FROM_MANIFEST_TOOL_HERE>",
-    "signature": "<PASTE_SIGNATURE_FROM_MANIFEST_TOOL_HERE>"
-  },
-  "miniapp": {
-    "version": "1",
-    "name": "Tap-Tap!",
-    "subtitle": "Quick 10-second tap challenge 🎯 Beat your friends!",
-    "description": "Tap as fast as you can for 10 seconds. Share your score and challenge friends on Farcaster.",
-    "primaryCategory": "games",
-    "homeUrl": "https://investorphem.github.io/tap-tap-miniapp//",
-    "iconUrl": "https://investorphem.github.io/tap-tap-miniapp//icon.png",
-    "heroImageUrl": "https://investorphem.github.io/tap-tap-miniapp//cover.jpg",
-    "splashImageUrl": "https://investorphem.github.io/tap-tap-miniapp//icon.png",
-    "splashBackgroundColor": "#111827",
-    "screenshotUrls": [
-      "https://investorphem.github.io/tap-tap-miniapp//screenshot1.png"
-    ],
-    "imageUrl": "https://investorphem.github.io/tap-tap-miniapp//preview.png",
-    "tags": ["game","arcade","challenge","tap"],
-    "tagline": "The fastest fingers win ⏱️🔥",
-    "buttonTitle": "Play Now",
-    "ogTitle": "Tap-Tap! 🎯",
-    "ogDescription": "I scored [SCORE] in Tap-Tap — can you beat me?",
-    "ogImageUrl": "https://investorphem.github.io/tap-tap-miniapp//preview.png",
-    "castShareUrl": "https://investorphem.github.io/tap-tap-miniapp//",
-    "webhookUrl": ""
-  }
+  "name": "Tap Tap Miniapp",
+  "iconUrl": "https://tap-tap-miniapp.vercel.app/icon.png",
+  "subtitle": "Fun tap-to-score mini game",
+  "description": "A simple, fun tap-to-play mini game built for Farcaster. Tap quickly, earn points, and challenge friends.",
+  "primaryCategory": "games",
+
+  "screenshotUrls": [
+    "https://tap-tap-miniapp.vercel.app/screenshot1.png"
+  ],
+  "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
+  "heroImageUrl": "https://tap-tap-miniapp.vercel.app/hero.png",
+  "splashImageUrl": "https://tap-tap-miniapp.vercel.app/splash.png",
+  "splashBackgroundColor": "#4B0082",
+
+  "tags": ["game", "fun", "tap", "miniapp"],
+  "tagline": "Tap your way to victory!",
+  "buttonTitle": "Play Now",
+  "ogTitle": "Tap Tap Miniapp",
+  "ogDescription": "A fun, addictive mini game now on Farcaster. Tap to play and challenge your friends!",
+  "ogImageUrl": "https://tap-tap-miniapp.vercel.app/share.png",
+  "castShareUrl": "https://tap-tap-miniapp.vercel.app/",
+
+  "homeUrl": "https://tap-tap-miniapp.vercel.app/",
+  "webhookUrl": ""
 }
