@@ -1,10 +1,8 @@
 {
   "name": "Tap Tap Miniapp",
   "iconUrl": "https://tap-tap-miniapp.vercel.app/icon.png",
-  "subtitle": "Fun tap-to-score mini game",
   "description": "A simple, fun tap-to-play mini game built for Farcaster. Tap quickly, earn points, and challenge friends.",
   "primaryCategory": "games",
-
   "screenshotUrls": [
     "https://tap-tap-miniapp.vercel.app/screenshot1.png"
   ],
@@ -12,7 +10,6 @@
   "heroImageUrl": "https://tap-tap-miniapp.vercel.app/hero.png",
   "splashImageUrl": "https://tap-tap-miniapp.vercel.app/splash.png",
   "splashBackgroundColor": "#4B0082",
-
   "tags": ["game", "fun", "tap", "miniapp"],
   "tagline": "Tap your way to victory!",
   "buttonTitle": "Play Now",
@@ -20,10 +17,8 @@
   "ogDescription": "A fun, addictive mini game now on Farcaster. Tap to play and challenge your friends!",
   "ogImageUrl": "https://tap-tap-miniapp.vercel.app/share.png",
   "castShareUrl": "https://tap-tap-miniapp.vercel.app/",
-
   "homeUrl": "https://tap-tap-miniapp.vercel.app/",
   "webhookUrl": "",
-
   "accountAssociation": {
     "header": "eyJmaWQiOjIxOTA1OSwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEQ2OEYyMjZCQjY5ZTk4MmI3N0I0QTYxYUEwMmZhMzdhMjJCQUU2MDgifQ",
     "payload": "eyJkb21haW4iOiJ0YXAtdGFwLW1pbmlhcHAudmVyY2VsLmFwcCJ9",
