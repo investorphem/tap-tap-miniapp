@@ -1,7 +1,7 @@
 {
   "name": "Tap Tap Miniapp",
   "iconUrl": "https://tap-tap-miniapp.vercel.app/icon.png",
-  "description": "A simple, fun tap-to-play mini game built for Farcaster. Tap quickly, earn points, and challenge friends.",
+  "description": "Tap quickly, earn points, and challenge friends on Farcaster!",
   "primaryCategory": "games",
   "screenshotUrls": [
     "https://tap-tap-miniapp.vercel.app/screenshot1.png"
