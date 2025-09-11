@@ -1,5 +1,5 @@
 {
-  "name": "tap-tap-miniapp",
+  "name": "tap tap",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@farcaster/miniapp-sdk":"^0.1.10",
     "next": "^14.2.3",
     "react": "^18",
     "react-dom": "^18",
