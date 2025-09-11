@@ -1,25 +1,24 @@
-// public/farcaster.json
 {
   "frame": {
-    "name": "Tap Tap Miniapp",
+    "name": "Tap Tap",
     "version": "1",
     "iconUrl": "/icon.png",
     "homeUrl": "https://tap-tap-miniapp.vercel.app/",
-    "imageUrl": "/preview.png",
+    "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
     "buttonTitle": "Play Now",
-    "splashImageUrl": "/splash.png",
+    "splashImageUrl": "https://tap-tap-miniapp.vercel.app/splash.png",
     "splashBackgroundColor": "#4B0082",
-    "webhookUrl": "",
+    "webhookUrl": "https://tap-tap-miniapp.vercel.app/api/webhook",
     "subtitle": "Tap to earn points and challenge friends",
     "description": "Tap quickly, earn points, and challenge friends on Farcaster!",
     "primaryCategory": "games",
-    "screenshotUrls": ["/screenshot1.png"],
-    "heroImageUrl": "/hero.png",
+    "screenshotUrls": ["https://tap-tap-miniapp.vercel.app/screenshot1.png"],
+    "heroImageUrl": "https://tap-tap-miniapp.vercel.app/hero.png",
     "tags": ["game", "fun", "tap", "miniapp"],
     "tagline": "Tap your way to victory!",
     "ogTitle": "Tap Tap Miniapp",
     "ogDescription": "A fun, addictive mini game now on Farcaster. Tap to play and challenge your friends!",
-    "ogImageUrl": "/share.png",
+    "ogImageUrl": "https://tap-tap-miniapp.vercel.app/share.png",
     "castShareUrl": "https://tap-tap-miniapp.vercel.app/"
   },
   "accountAssociation": {
