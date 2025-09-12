@@ -2,7 +2,7 @@
   "frame": {
     "name": "tap tap",
     "version": "0.1",
-    "iconUrl": "/icon.png",
+    "iconUrl": "https://tap-tap-miniapp.vercel.app/icon.png",
     "homeUrl": "https://tap-tap-miniapp.vercel.app/",
     "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
     "buttonTitle": "Play Now",
