@@ -1,7 +1,7 @@
 {
   "frame": {
     "name": "tap tap",
-    "version": "0.1.0",
+    "version": "1",
     "iconUrl": "https://tap-tap-miniapp.vercel.app/icon.png",
     "homeUrl": "https://tap-tap-miniapp.vercel.app/",
     "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
@@ -9,7 +9,7 @@
     "splashImageUrl": "https://tap-tap-miniapp.vercel.app/splash.png",
     "splashBackgroundColor": "#4B0082",
     "webhookUrl": "https://tap-tap-miniapp.vercel.app/api/webhook",
-    "subtitle": "Tap to earn points and challenge friends",
+    "subtitle": "Tap to earn points, challenge pals",
     "description": "Tap quickly, earn points, and challenge friends on Farcaster!",
     "primaryCategory": "games",
     "screenshotUrls": ["https://tap-tap-miniapp.vercel.app/screenshot1.png"],
