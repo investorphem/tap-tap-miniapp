@@ -142,7 +142,8 @@
     });
 
     $share.addEventListener('click', async () => {
-      const text = `I scored ${score} in Tap-Tap! 🎯`;
+      const text = `I scored ${score} in Tap-Tap! 🎯
+      https://tap-tap-miniapp.vercel.app`;
       // If inside a Farcaster client, open the cast composer:
       try {
         if (window.miniapp?.sdk?.actions?.composeCast) {
