@@ -9,7 +9,7 @@
     "splashImageUrl": "https://tap-tap-miniapp.vercel.app/splash.png",
     "splashBackgroundColor": "#4B0082",
     "webhookUrl": "https://tap-tap-miniapp.vercel.app/api/webhook",
-    "subtitle": "Tap to earn points, challenge pals",
+    "subtitle": "Tap to earn, challenge pals",
     "description": "Tap quickly, earn points, and challenge friends on Farcaster!",
     "primaryCategory": "games",
     "screenshotUrls": ["https://tap-tap-miniapp.vercel.app/screenshot1.png"],
