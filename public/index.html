@@ -142,8 +142,8 @@
     });
 
     $share.addEventListener('click', async () => {
-      const text = `I scored ${score} in Tap-Tap! 🎯
-      https://tap-tap-miniapp.vercel.app/`;
+      const miniAppUrl = 'https://tap-tap-miniapp.vercel.app';
+      const text = `I scored ${score} in Tap-Tap! 🎯 Play it here: ${miniAppUrl}`;
       // If inside a Farcaster client, open the cast composer:
       try {
         if (window.miniapp?.sdk?.actions?.composeCast) {
@@ -154,7 +154,7 @@
       // Fallback: copy to clipboard
       try {
         await navigator.clipboard.writeText(text);
-        alert("Copied your score. Paste it into a cast!");
+        alert("Copied your score and game link. Paste it into a cast!");
       } catch(e) {
         alert(text);
       }
