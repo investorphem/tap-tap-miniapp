@@ -19,6 +19,7 @@ Built for consumer crypto experiences
 Secure L2 backed by Ethereum
 Rapidly growing developer ecosystem
 Clean support for mini-app and Web3 onboarding
+
 The game runs entirely on the Base smart-contract stack for scoring, leaderboards and wallet interactions.
 ✨ Key Features
 🎮 Simple tap-to-earn gameplay
@@ -27,7 +28,10 @@ The game runs entirely on the Base smart-contract stack for scoring, leaderboard
 🔐 Wallet identity integration
 ⚡ Fast, cheap transactions
 🧱 Built for scalable Web3 gaming
+
+
 🛠️ Tech Stack
+
 Component
 Technology
 Blockchain
