@@ -56,7 +56,10 @@ Tapping and scoring points
 Daily/mission challenges
 On-chain leaderboard ranking
 All rewards are distributed and verified on Base.
+
+
 🔧 Installation
+
 Copy code
 Bash
 git clone https://github.com/<your-username>/taptap-miniapp.git
