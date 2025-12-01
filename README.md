@@ -2,6 +2,8 @@ TapTap Mini-App Game 🕹️
 
 
 A Skill-to-Earn Web3 Mini Game Built on Base Chain
+
+
 🧩 Overview
 TapTap Mini-App is a decentralized tap-to-earn crypto game deployed on Base, Coinbase’s Layer-2 blockchain. Players earn on-chain points by interacting with the game, completing missions, and climbing the leaderboard.
 The project demonstrates a simple but powerful example of blockchain-powered gaming, gamified rewards, and on-chain interaction.
