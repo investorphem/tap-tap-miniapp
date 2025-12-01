@@ -60,7 +60,7 @@ All rewards are distributed and verified on Base.
 
 🔧 Installation
 
-Copy code
+
 Bash
 git clone https://github.com/<your-username>/taptap-miniapp.git
 cd taptap-miniapp
@@ -87,6 +87,8 @@ No private keys stored in the frontend
 
 
 🧠 Roadmap
+
+
 NFTs for achievements
 Multiple game modes
 On-chain badges + upgrades
@@ -95,6 +97,9 @@ Mobile version
 
 
 🤝 Contributing
+
 Open to pull requests and suggestions.
+
 📜 License
+
 MIT License
