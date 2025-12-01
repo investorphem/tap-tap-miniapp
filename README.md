@@ -67,8 +67,11 @@ cd taptap-miniapp
 npm install
 npx hardhat test
 npm run dev
+
+
 📁 Repository Structure
-Copy code
+
+
 
 /contracts     # Reward + scoring contracts for Base
 /scripts       # Deployment scripts
