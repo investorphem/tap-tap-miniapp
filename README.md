@@ -46,7 +46,11 @@ Frontend
 HTML + CSS + JavaScript
 Backend
 Node.js
+
+
 🪙 Rewards System
+
+
 Players earn Base-secured rewards by:
 Tapping and scoring points
 Daily/mission challenges
