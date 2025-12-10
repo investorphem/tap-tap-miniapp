@@ -1,7 +1,7 @@
 TapTap Mini-App Game 🕹️
 
 
-A Skill-to-Earn Web3 Mini Game Built on Base Chain
+A Skill-to-Earn Web3 Mini Game Built on Base Chan
 
 
 🧩 Overview
