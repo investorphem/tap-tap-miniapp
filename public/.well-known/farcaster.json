@@ -17,7 +17,7 @@
     "tags": ["game", "trending", "tap", "miniapp"],
     "tagline": "Tap your way to victory!",
     "ogTitle": "Tap Tap Miniapp",
-    "ogDescription": "A fun, addictive mini game now on Farcaster. Tap to play and challenge your friends!",
+    "ogDescription": "A fun, addictive mini game now on Farcaster. Tap to play and challenge your friend!",
     "ogImageUrl": "https://tap-tap-miniapp.vercel.app/share.png",
     "castShareUrl": "https://tap-tap-miniapp.vercel.app/"
   },
