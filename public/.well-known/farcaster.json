@@ -13,7 +13,7 @@
     "description": "Tap quickly, earn points, and challenge friends on Farcaster!",
     "primaryCategory": "games",
     "screenshotUrls": ["https://tap-tap-miniapp.vercel.app/screenshot1.png"],
-    "heroImageUrl" "https://tap-tap-miniapp.vercel.app/hero.png",
+    "heroImageUrl" "https://tap-tap-miniapp.vercel.app/hero.png"
     "tags": ["game", "trending", "tap", "miniapp"],
     "tagline": "Tap your way to victory!",
     "ogTitle": "Tap Tap Miniapp",
