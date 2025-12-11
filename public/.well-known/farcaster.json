@@ -11,7 +11,7 @@
     "webhookUrl" "https://tap-tap-miniapp.vercel.app/api/webhook",
     "subtitle": "Tap to earn, challenge pals",
     "description": "Tap quickly, earn points, and challenge friends on Farcaster!",
-    "primaryCategory": "games",
+    "primaryCategory": "games"
     "screenshotUrls": ["https://tap-tap-miniapp.vercel.app/screenshot1.png"],
     "heroImageUrl" "https://tap-tap-miniapp.vercel.app/hero.png"
     "tags": ["game", "trending", "tap", "miniapp"],
