@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Taptap!</title>
 
-  <!-- Mini-App Embed meta: this makes your URL render with a Play button in casts -->
-  <!-- Replace YOUR_REPL_URL_HERE once you get your public URL -->
+  <!-- TalentApp Domain Verification -->
+  <meta name="talentapp:project_verification" content="f14d69ebc058515cf542410d149ecc69cd6a1ce233513586cf8422d7e473b4dfb7f6f56a77dbcf38da94b50561310b332f0ab9879a217e7d9ae1d6ce0add30d2">
+
+  <!-- Mini-App Embed meta -->
   <meta name="fc:miniapp" content='{
     "version": "1",
     "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
@@ -21,6 +23,7 @@
       }
     }
   }' />
+
   <!-- Back-compat for older clients -->
   <meta name="fc:frame" content='{
     "version": "1",
@@ -62,10 +65,10 @@
     footer { text-align:center; font-size:12px; color:var(--muted); padding-bottom:16px; }
   </style>
 
-  <!-- Mini-App SDK via CDN (works on plain HTML) -->
-  <!-- If running inside a Farcaster client, this exposes window.miniapp.sdk.*  -->
+  <!-- Mini-App SDK -->
   <script defer src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
 </head>
+
 <body>
   <div class="wrap">
     <div class="card row">
@@ -96,8 +99,6 @@
   </div>
 
   <script>
-    // Tell the host app we’re ready (hides the splash screen).
-    // Safe-guarded so it won’t crash outside Farcaster.
     window.addEventListener('DOMContentLoaded', () => {
       try { window.miniapp?.sdk?.actions?.ready?.(); } catch(e) {}
     });
@@ -118,40 +119,42 @@
       $tap.textContent = "DONE";
       $share.classList.remove('hidden');
       $fav.classList.remove('hidden');
-      // light haptic if supported
       try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e) {}
     }
 
     $start.addEventListener('click', () => {
       if (playing) return;
-      score = 0; timeLeft = 10; $score.textContent = score; $time.textContent = timeLeft;
+      score = 0; timeLeft = 10;
+      $score.textContent = score;
+      $time.textContent = timeLeft;
       $tap.textContent = "TAP!";
       $tap.disabled = false;
-      $share.classList.add('hidden'); $fav.classList.add('hidden');
+      $share.classList.add('hidden');
+      $fav.classList.add('hidden');
       playing = true;
       try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e) {}
       timerId = setInterval(() => {
-        timeLeft--; $time.textContent = timeLeft;
+        timeLeft--;
+        $time.textContent = timeLeft;
         if (timeLeft <= 0) endGame();
       }, 1000);
     });
 
     $tap.addEventListener('click', () => {
       if (!playing) return;
-      score++; $score.textContent = score;
+      score++;
+      $score.textContent = score;
     });
 
     $share.addEventListener('click', async () => {
       const miniAppUrl = 'https://tap-tap-miniapp.vercel.app';
       const text = `I scored ${score} in Tap-Tap! 🎯 Play it here: ${miniAppUrl}`;
-      // If inside a Farcaster client, open the cast composer:
       try {
         if (window.miniapp?.sdk?.actions?.composeCast) {
           await window.miniapp.sdk.actions.composeCast({ text });
           return;
         }
       } catch(e) {}
-      // Fallback: copy to clipboard
       try {
         await navigator.clipboard.writeText(text);
         alert("Copied your score and game link. Paste it into a cast!");
