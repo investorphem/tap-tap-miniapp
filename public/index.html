@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-<title>Tap-Tap! 🎯 | Ultimate Web3 Game</title>
+<title>Tap-Tap! 🎯</title>
 
-<meta name="description" content="Tap fast. Compete globally. Earn onchain rewards. Built for Farcaster." />
+<meta name="description" content="Tap fast. Compete globally. Earn onchain rewards." />
 <meta name="theme-color" content="#0b1220" />
 
 <link rel="icon" href="/icon.png" />
@@ -26,18 +26,11 @@ src="https://plausible.io/js/script.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
 
 <style>
-:root{
---bg:#0b1220;
---card:#101826;
---text:#fff;
---accent:#22c55e;
-}
-*{box-sizing:border-box}
 body{
 margin:0;
 font-family:system-ui;
-background:var(--bg);
-color:var(--text);
+background:#0b1220;
+color:white;
 }
 .wrap{
 max-width:420px;
@@ -48,10 +41,9 @@ flex-direction:column;
 gap:16px;
 }
 .card{
-background:var(--card);
+background:#101826;
 padding:16px;
 border-radius:20px;
-box-shadow:0 6px 24px rgba(0,0,0,.4);
 }
 button{
 border:none;
@@ -61,13 +53,14 @@ font-weight:bold;
 cursor:pointer;
 }
 .primary{background:#2563eb;color:white}
-.success{background:var(--accent);color:black}
+.success{background:#22c55e;color:black}
+
 .tap-btn{
 width:200px;
 height:200px;
 border-radius:50%;
 font-size:26px;
-background:var(--accent);
+background:#22c55e;
 transition:transform .1s ease;
 }
 .tap-btn:active{
@@ -84,14 +77,13 @@ animation:pop .3s ease;
 ol{padding-left:20px}
 </style>
 </head>
-
 <body>
 
 <div class="wrap">
 
 <div class="card">
-<h2>🎯 Tap-Tap!</h2>
-<p>Tap as fast as you can in 10 seconds.</p>
+<h2>🎯 Tap-Tap</h2>
+<p>Tap fast in 10 seconds.</p>
 </div>
 
 <div class="card">
@@ -134,17 +126,19 @@ Claim Onchain Reward
 
 <script>
 
-/* ========================
-   INIT SUPABASE
-=========================*/
+/* =======================
+   CONFIG
+======================= */
+
 const supabase = window.supabase.createClient(
 "YOUR_SUPABASE_URL",
 "YOUR_SUPABASE_ANON_KEY"
 );
 
-/* ========================
-   GAME LOGIC
-=========================*/
+/* =======================
+   ELEMENTS
+======================= */
+
 const tapBtn=document.getElementById("tap");
 const startBtn=document.getElementById("start");
 const shareBtn=document.getElementById("share");
@@ -159,20 +153,22 @@ let time=10;
 let playing=false;
 let timer;
 
-/* ========================
-   SOUND
-=========================*/
-function playTapSound(){
+/* =======================
+   SOUNDS
+======================= */
+
+function tapSound(){
 document.getElementById("tapSound").play();
 }
-function playEndSound(){
+function endSound(){
 document.getElementById("endSound").play();
 }
 
-/* ========================
+/* =======================
    LOCAL LEADERBOARD
-=========================*/
-function saveLocalScore(s){
+======================= */
+
+function saveLocal(s){
 let scores=JSON.parse(localStorage.getItem("scores")||"[]");
 scores.push(s);
 scores.sort((a,b)=>b-a);
@@ -186,11 +182,14 @@ let scores=JSON.parse(localStorage.getItem("scores")||"[]");
 localBoard.innerHTML=scores.map(s=>`<li>${s}</li>`).join("");
 }
 
-/* ========================
+/* =======================
    GLOBAL LEADERBOARD
-=========================*/
-async function saveGlobalScore(s){
-await supabase.from("scores").insert([{username:"anon",score:s}]);
+======================= */
+
+async function saveGlobal(s){
+await supabase.from("scores").insert([
+{username:"anon",score:s}
+]);
 loadGlobal();
 }
 
@@ -201,15 +200,18 @@ const {data}=await supabase
 .order("score",{ascending:false})
 .limit(10);
 
-globalBoard.innerHTML=data?.map(d=>`<li>${d.username} — ${d.score}</li>`).join("")||"";
+globalBoard.innerHTML=data?.map(d=>
+`<li>${d.username} — ${d.score}</li>`
+).join("")||"";
 }
 
-/* ========================
+/* =======================
    ONCHAIN REWARD
-=========================*/
+======================= */
+
 async function claimReward(){
 if(!window.ethereum){
-alert("Install wallet!");
+alert("Install wallet");
 return;
 }
 
@@ -227,9 +229,9 @@ await contract.reward(await signer.getAddress(),score);
 alert("Reward Claimed 🚀");
 }
 
-/* ========================
-   GAME EVENTS
-=========================*/
+/* =======================
+   GAME
+======================= */
 
 startBtn.onclick=()=>{
 score=0;
@@ -240,7 +242,7 @@ scoreEl.textContent=score;
 timeEl.textContent=time;
 
 tapBtn.disabled=false;
-tapBtn.textContent="TAP!";
+tapBtn.textContent="TAP";
 shareBtn.style.display="none";
 rewardBtn.style.display="none";
 
@@ -253,9 +255,11 @@ if(time<=0)endGame();
 
 tapBtn.onclick=()=>{
 if(!playing)return;
+
 score++;
 scoreEl.textContent=score;
-playTapSound();
+
+tapSound();
 scoreEl.classList.add("score-pop");
 setTimeout(()=>scoreEl.classList.remove("score-pop"),300);
 };
@@ -266,20 +270,21 @@ clearInterval(timer);
 tapBtn.disabled=true;
 tapBtn.textContent="DONE";
 
-playEndSound();
+endSound();
 
 shareBtn.style.display="block";
 rewardBtn.style.display="block";
 
-saveLocalScore(score);
-saveGlobalScore(score);
+saveLocal(score);
+saveGlobal(score);
 }
 
-/* ========================
+/* =======================
    SHARE
-=========================*/
+======================= */
+
 shareBtn.onclick=async()=>{
-const text=`I scored ${score} in Tap-Tap! 🎯 Play now: https://tap-tap-miniapp.vercel.app`;
+const text=`I scored ${score} in Tap-Tap! 🎯 Play: https://tap-tap-miniapp.vercel.app`;
 
 if(window.miniapp?.sdk?.actions?.composeCast){
 await window.miniapp.sdk.actions.composeCast({text});
@@ -291,12 +296,14 @@ alert("Copied!");
 
 rewardBtn.onclick=claimReward;
 
-/* ========================
+/* =======================
    INIT
-=========================*/
+======================= */
+
 renderLocal();
 loadGlobal();
 
+/* Register Service Worker */
 if("serviceWorker"in navigator){
 navigator.serviceWorker.register("/sw.js");
 }
