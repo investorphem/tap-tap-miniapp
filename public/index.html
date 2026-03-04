@@ -2,13 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Taptap!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- Primary SEO -->
+  <title>Tap-Tap! 🎯 | Farcaster Mini Game</title>
+  <meta name="title" content="Tap-Tap! 🎯 | Farcaster Mini Game" />
+  <meta name="description" content="Tap as fast as you can in 10 seconds! Compete with friends and share your score on Farcaster. A fast and fun mini game built for Farcaster." />
+  <meta name="keywords" content="Tap game, Farcaster mini app, Web3 mini game, Onchain game, Tap challenge, Warpcast game" />
+  <meta name="author" content="@investorphem" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/icon.png" />
+  <link rel="apple-touch-icon" href="/icon.png" />
 
   <!-- TalentApp Domain Verification -->
-  <meta name="talentapp:project_verification" content="f14d69ebc058515cf542410d149ecc69cd6a1ce233513586cf8422d7e473b4dfb7f6f56a77dbcf38da94b50561310b332f0ab9879a217e7d9ae1d6ce0add30d2">
+  <meta name="talentapp:project_verification"
+    content="f14d69ebc058515cf542410d149ecc69cd6a1ce233513586cf8422d7e473b4dfb7f6f56a77dbcf38da94b50561310b332f0ab9879a217e7d9ae1d6ce0add30d2" />
 
-  <!-- Mini-App Embed meta -->
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tap-tap-miniapp.vercel.app/" />
+  <meta property="og:title" content="Tap-Tap! 🎯 | Can You Beat My Score?" />
+  <meta property="og:description"
+    content="I just played Tap-Tap! 🎯 — tap as fast as you can in 10 seconds. Think you can beat my score?" />
+  <meta property="og:image" content="https://tap-tap-miniapp.vercel.app/preview.png" />
+  <meta property="og:site_name" content="Tap-Tap! Mini App" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tap-Tap! 🎯 Mini Game" />
+  <meta name="twitter:description"
+    content="Tap as many times as possible in 10 seconds and share your score!" />
+  <meta name="twitter:image" content="https://tap-tap-miniapp.vercel.app/preview.png" />
+
+  <!-- Farcaster Mini-App -->
   <meta name="fc:miniapp" content='{
     "version": "1",
     "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
@@ -24,7 +53,7 @@
     }
   }' />
 
-  <!-- Back-compat for older clients -->
+  <!-- Back-compat -->
   <meta name="fc:frame" content='{
     "version": "1",
     "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
@@ -40,6 +69,7 @@
     }
   }' />
 
+  <!-- Styles -->
   <style>
     :root { --bg:#0b1220; --card:#101826; --text:#e5e7eb; --muted:#94a3b8; --accent:#22c55e; }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -76,7 +106,7 @@
         <h1>Tap-Tap! 🎯</h1>
         <div class="muted">Tap as many times as you can in <b>10 seconds</b>.</div>
       </div>
-      <img src="icon.png" alt="" width="48" height="48" style="border-radius:12px" />
+      <img src="icon.png" alt="Tap-Tap icon" width="48" height="48" style="border-radius:12px" />
     </div>
 
     <div class="card center" id="game">
@@ -132,7 +162,9 @@
       $share.classList.add('hidden');
       $fav.classList.add('hidden');
       playing = true;
+
       try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e) {}
+
       timerId = setInterval(() => {
         timeLeft--;
         $time.textContent = timeLeft;
@@ -148,7 +180,7 @@
 
     $share.addEventListener('click', async () => {
       const miniAppUrl = 'https://tap-tap-miniapp.vercel.app';
-      const text = `I scored ${score} in Tap-Tap! 🎯 Play it here: ${miniAppUrl}`;
+      const text = `I scored ${score} in Tap-Tap! 🎯 Play here: ${miniAppUrl}`;
       try {
         if (window.miniapp?.sdk?.actions?.composeCast) {
           await window.miniapp.sdk.actions.composeCast({ text });
@@ -157,7 +189,7 @@
       } catch(e) {}
       try {
         await navigator.clipboard.writeText(text);
-        alert("Copied your score and game link. Paste it into a cast!");
+        alert("Copied! Paste into Warpcast.");
       } catch(e) {
         alert(text);
       }
