@@ -1,314 +1,203 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-<title>Tap-Tap! 🎯</title>
+  <!-- Primary SEO -->
+  <title>Tap-Tap! 🎯 | Farcaster Mini Game</title>
+  <meta name="title" content="Tap-Tap! 🎯 | Farcaster Mini Game" />
+  <meta name="description" content="Tap as fast as you can in 10 seconds! Compete with friends and share your score on Farcaster. A fast and fun mini game built for Farcaster." />
+  <meta name="keywords" content="Tap game, Farcaster mini app, Web3 mini game, Onchain game, Tap challenge, Warpcast game" />
+  <meta name="author" content="@investorphem" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b1220" />
 
-<meta name="description" content="Tap fast. Compete globally. Earn onchain rewards." />
-<meta name="theme-color" content="#0b1220" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/icon.png" />
+  <link rel="apple-touch-icon" href="/icon.png" />
 
-<link rel="icon" href="/icon.png" />
-<link rel="manifest" href="/manifest.json" />
+  <!-- TalentApp Domain Verification -->
+  <meta name="talentapp:project_verification"
+    content="f14d69ebc058515cf542410d149ecc69cd6a1ce233513586cf8422d7e473b4dfb7f6f56a77dbcf38da94b50561310b332f0ab9879a217e7d9ae1d6ce0add30d2" />
 
-<!-- Analytics -->
-<script defer data-domain="tap-tap-miniapp.vercel.app"
-src="https://plausible.io/js/script.js"></script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tap-tap-miniapp.vercel.app/" />
+  <meta property="og:title" content="Tap-Tap! 🎯 | Can You Beat My Score?" />
+  <meta property="og:description"
+    content="I just played Tap-Tap! 🎯 — tap as fast as you can in 10 seconds. Think you can beat my score?" />
+  <meta property="og:image" content="https://tap-tap-miniapp.vercel.app/preview.png" />
+  <meta property="og:site_name" content="Tap-Tap! Mini App" />
 
-<!-- Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tap-Tap! 🎯 Mini Game" />
+  <meta name="twitter:description"
+    content="Tap as many times as possible in 10 seconds and share your score!" />
+  <meta name="twitter:image" content="https://tap-tap-miniapp.vercel.app/preview.png" />
 
-<!-- Ethers -->
-<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+  <!-- Farcaster Mini-App -->
+  <meta name="fc:miniapp" content='{
+    "version": "1",
+    "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
+    "button": {
+      "title": "Play",
+      "action": {
+        "type": "launch_frame",
+        "name": "Tap-Tap!",
+        "url": "https://tap-tap-miniapp.vercel.app",
+        "splashImageUrl": "https://tap-tap-miniapp.vercel.app/splash.png",
+        "splashBackgroundColor": "#111827"
+      }
+    }
+  }' />
 
-<!-- MiniApp SDK -->
-<script defer src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
+  <!-- Back-compat -->
+  <meta name="fc:frame" content='{
+    "version": "1",
+    "imageUrl": "https://tap-tap-miniapp.vercel.app/preview.png",
+    "button": {
+      "title": "Play",
+      "action": {
+        "type": "launch_frame",
+        "name": "Tap-Tap!",
+        "url": "https://tap-tap-miniapp.vercel.app/",
+        "splashImageUrl": "https://tap-tap-miniapp.vercel.app/splash.png",
+        "splashBackgroundColor": "#111827"
+      }
+    }
+  }' />
 
-<style>
-body{
-margin:0;
-font-family:system-ui;
-background:#0b1220;
-color:white;
-}
-.wrap{
-max-width:420px;
-margin:auto;
-padding:16px;
-display:flex;
-flex-direction:column;
-gap:16px;
-}
-.card{
-background:#101826;
-padding:16px;
-border-radius:20px;
-}
-button{
-border:none;
-padding:14px;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
-}
-.primary{background:#2563eb;color:white}
-.success{background:#22c55e;color:black}
+  <!-- Styles -->
+  <style>
+    :root { --bg:#0b1220; --card:#101826; --text:#e5e7eb; --muted:#94a3b8; --accent:#22c55e; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html,body { height:100%; margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Roboto; background: var(--bg); color: var(--text); }
+    .wrap { min-height:100%; max-width:424px; margin:0 auto; padding:16px; display:flex; flex-direction:column; gap:16px; }
+    .card { background:var(--card); border-radius:20px; padding:16px; box-shadow: 0 6px 24px rgba(0,0,0,.3); }
+    h1 { margin:0; font-size:20px; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .center { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; }
+    .big { font-size:42px; font-weight:700; }
+    .tap-btn {
+      width:200px; height:200px; border-radius:999px; border:none; background:var(--accent);
+      color:#042; font-size:28px; font-weight:800; box-shadow: inset 0 -6px rgba(0,0,0,.25);
+    }
+    .tap-btn:active { transform: scale(0.98); }
+    .row { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .btn {
+      width:100%; border:none; padding:14px 16px; border-radius:14px; background:#334155; color:#fff; font-size:16px; font-weight:600;
+    }
+    .btn.primary { background:#2563eb; }
+    .btn.success { background:#22c55e; color:#042; }
+    .hidden { display:none !important; }
+    footer { text-align:center; font-size:12px; color:var(--muted); padding-bottom:16px; }
+  </style>
 
-.tap-btn{
-width:200px;
-height:200px;
-border-radius:50%;
-font-size:26px;
-background:#22c55e;
-transition:transform .1s ease;
-}
-.tap-btn:active{
-transform:scale(.9);
-}
-.score-pop{
-animation:pop .3s ease;
-}
-@keyframes pop{
-0%{transform:scale(1)}
-50%{transform:scale(1.4)}
-100%{transform:scale(1)}
-}
-ol{padding-left:20px}
-</style>
+  <!-- Mini-App SDK -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
 </head>
+
 <body>
+  <div class="wrap">
+    <div class="card row">
+      <div>
+        <h1>Tap-Tap! 🎯</h1>
+        <div class="muted">Tap as many times as you can in <b>10 seconds</b>.</div>
+      </div>
+      <img src="icon.png" alt="Tap-Tap icon" width="48" height="48" style="border-radius:12px" />
+    </div>
 
-<div class="wrap">
+    <div class="card center" id="game">
+      <div class="row" style="width:100%">
+        <div>Score: <b id="score">0</b></div>
+        <div>Time: <b id="time">10</b>s</div>
+      </div>
 
-<div class="card">
-<h2>🎯 Tap-Tap</h2>
-<p>Tap fast in 10 seconds.</p>
-</div>
+      <button id="tap" class="tap-btn" disabled>START</button>
 
-<div class="card">
-<div style="display:flex;justify-content:space-between">
-<div>Score: <b id="score">0</b></div>
-<div>Time: <b id="time">10</b>s</div>
-</div>
+      <div class="row" style="width:100%">
+        <button id="start" class="btn primary">Start Game</button>
+        <button id="share" class="btn hidden">Share Score</button>
+      </div>
 
-<center>
-<button id="tap" class="tap-btn" disabled>START</button>
-</center>
+      <button id="fav" class="btn success hidden">Add to Favorites</button>
+    </div>
 
-<br>
+    <footer>Built with 💜 by @investorphem</footer>
+  </div>
 
-<button id="start" class="primary" style="width:100%">Start Game</button>
-<button id="share" class="primary" style="width:100%;display:none">Share Score</button>
-<button id="reward" class="success" style="width:100%;display:none">
-Claim Onchain Reward
-</button>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      try { window.miniapp?.sdk?.actions?.ready?.(); } catch(e) {}
+    });
 
-</div>
+    const $tap = document.getElementById('tap');
+    const $start = document.getElementById('start');
+    const $share = document.getElementById('share');
+    const $fav = document.getElementById('fav');
+    const $score = document.getElementById('score');
+    const $time = document.getElementById('time');
 
-<!-- Local Leaderboard -->
-<div class="card">
-<h3>🏆 Local Leaderboard</h3>
-<ol id="localBoard"></ol>
-</div>
+    let score = 0, timeLeft = 10, timerId = null, playing = false;
 
-<!-- Global Leaderboard -->
-<div class="card">
-<h3>🌍 Global Leaderboard</h3>
-<ol id="globalBoard"></ol>
-</div>
+    function endGame() {
+      playing = false;
+      clearInterval(timerId);
+      $tap.disabled = true;
+      $tap.textContent = "DONE";
+      $share.classList.remove('hidden');
+      $fav.classList.remove('hidden');
+      try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e) {}
+    }
 
-</div>
+    $start.addEventListener('click', () => {
+      if (playing) return;
+      score = 0; timeLeft = 10;
+      $score.textContent = score;
+      $time.textContent = timeLeft;
+      $tap.textContent = "TAP!";
+      $tap.disabled = false;
+      $share.classList.add('hidden');
+      $fav.classList.add('hidden');
+      playing = true;
 
-<!-- Sounds -->
-<audio id="tapSound" src="/tap.mp3"></audio>
-<audio id="endSound" src="/end.mp3"></audio>
+      try { window.miniapp?.sdk?.actions?.haptics?.impact?.('light'); } catch(e) {}
 
-<script>
+      timerId = setInterval(() => {
+        timeLeft--;
+        $time.textContent = timeLeft;
+        if (timeLeft <= 0) endGame();
+      }, 1000);
+    });
 
-/* =======================
-   CONFIG
-======================= */
+    $tap.addEventListener('click', () => {
+      if (!playing) return;
+      score++;
+      $score.textContent = score;
+    });
 
-const supabase = window.supabase.createClient(
-"YOUR_SUPABASE_URL",
-"YOUR_SUPABASE_ANON_KEY"
-);
+    $share.addEventListener('click', async () => {
+      const miniAppUrl = 'https://tap-tap-miniapp.vercel.app';
+      const text = `I scored ${score} in Tap-Tap! 🎯 Play here: ${miniAppUrl}`;
+      try {
+        if (window.miniapp?.sdk?.actions?.composeCast) {
+          await window.miniapp.sdk.actions.composeCast({ text });
+          return;
+        }
+      } catch(e) {}
+      try {
+        await navigator.clipboard.writeText(text);
+        alert("Copied! Paste into Warpcast.");
+      } catch(e) {
+        alert(text);
+      }
+    });
 
-/* =======================
-   ELEMENTS
-======================= */
-
-const tapBtn=document.getElementById("tap");
-const startBtn=document.getElementById("start");
-const shareBtn=document.getElementById("share");
-const rewardBtn=document.getElementById("reward");
-const scoreEl=document.getElementById("score");
-const timeEl=document.getElementById("time");
-const localBoard=document.getElementById("localBoard");
-const globalBoard=document.getElementById("globalBoard");
-
-let score=0;
-let time=10;
-let playing=false;
-let timer;
-
-/* =======================
-   SOUNDS
-======================= */
-
-function tapSound(){
-document.getElementById("tapSound").play();
-}
-function endSound(){
-document.getElementById("endSound").play();
-}
-
-/* =======================
-   LOCAL LEADERBOARD
-======================= */
-
-function saveLocal(s){
-let scores=JSON.parse(localStorage.getItem("scores")||"[]");
-scores.push(s);
-scores.sort((a,b)=>b-a);
-scores=scores.slice(0,5);
-localStorage.setItem("scores",JSON.stringify(scores));
-renderLocal();
-}
-
-function renderLocal(){
-let scores=JSON.parse(localStorage.getItem("scores")||"[]");
-localBoard.innerHTML=scores.map(s=>`<li>${s}</li>`).join("");
-}
-
-/* =======================
-   GLOBAL LEADERBOARD
-======================= */
-
-async function saveGlobal(s){
-await supabase.from("scores").insert([
-{username:"anon",score:s}
-]);
-loadGlobal();
-}
-
-async function loadGlobal(){
-const {data}=await supabase
-.from("scores")
-.select("*")
-.order("score",{ascending:false})
-.limit(10);
-
-globalBoard.innerHTML=data?.map(d=>
-`<li>${d.username} — ${d.score}</li>`
-).join("")||"";
-}
-
-/* =======================
-   ONCHAIN REWARD
-======================= */
-
-async function claimReward(){
-if(!window.ethereum){
-alert("Install wallet");
-return;
-}
-
-const provider=new ethers.providers.Web3Provider(window.ethereum);
-await provider.send("eth_requestAccounts",[]);
-const signer=provider.getSigner();
-
-const contract=new ethers.Contract(
-"YOUR_CONTRACT_ADDRESS",
-["function reward(address player,uint256 score) public"],
-signer
-);
-
-await contract.reward(await signer.getAddress(),score);
-alert("Reward Claimed 🚀");
-}
-
-/* =======================
-   GAME
-======================= */
-
-startBtn.onclick=()=>{
-score=0;
-time=10;
-playing=true;
-
-scoreEl.textContent=score;
-timeEl.textContent=time;
-
-tapBtn.disabled=false;
-tapBtn.textContent="TAP";
-shareBtn.style.display="none";
-rewardBtn.style.display="none";
-
-timer=setInterval(()=>{
-time--;
-timeEl.textContent=time;
-if(time<=0)endGame();
-},1000);
-};
-
-tapBtn.onclick=()=>{
-if(!playing)return;
-
-score++;
-scoreEl.textContent=score;
-
-tapSound();
-scoreEl.classList.add("score-pop");
-setTimeout(()=>scoreEl.classList.remove("score-pop"),300);
-};
-
-function endGame(){
-playing=false;
-clearInterval(timer);
-tapBtn.disabled=true;
-tapBtn.textContent="DONE";
-
-endSound();
-
-shareBtn.style.display="block";
-rewardBtn.style.display="block";
-
-saveLocal(score);
-saveGlobal(score);
-}
-
-/* =======================
-   SHARE
-======================= */
-
-shareBtn.onclick=async()=>{
-const text=`I scored ${score} in Tap-Tap! 🎯 Play: https://tap-tap-miniapp.vercel.app`;
-
-if(window.miniapp?.sdk?.actions?.composeCast){
-await window.miniapp.sdk.actions.composeCast({text});
-}else{
-await navigator.clipboard.writeText(text);
-alert("Copied!");
-}
-};
-
-rewardBtn.onclick=claimReward;
-
-/* =======================
-   INIT
-======================= */
-
-renderLocal();
-loadGlobal();
-
-/* Register Service Worker */
-if("serviceWorker"in navigator){
-navigator.serviceWorker.register("/sw.js");
-}
-
-</script>
-
+    $fav.addEventListener('click', async () => {
+      try { await window.miniapp?.sdk?.actions?.addMiniApp?.(); } catch(e) {}
+    });
+  </script>
 </body>
 </html>
